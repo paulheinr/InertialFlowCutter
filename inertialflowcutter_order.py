@@ -2,11 +2,11 @@ import subprocess
 import sys
 
 
-binary_path = "./build/"
+binary_path = "/build/"
 console = binary_path + "console"
 
-def save_inertialflowcutter_cch_order(G, order_path):
-    args = [console]
+def save_inertialflowcutter_cch_order(home, G, order_path):
+    args = [home + console]
     args.append("load_routingkit_unweighted_graph")
     args.append(G + "first_out")
     args.append(G + "head")
@@ -47,4 +47,6 @@ def save_inertialflowcutter_cch_order(G, order_path):
     subprocess.run(args, universal_newlines=True)
             
 if __name__ == '__main__':
-    save_inertialflowcutter_cch_order(sys.argv[1], sys.argv[2])
+    size = len(sys.argv[0])
+    home = sys.argv[0][:size - 28]
+    save_inertialflowcutter_cch_order(home, sys.argv[1], sys.argv[2])

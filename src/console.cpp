@@ -891,7 +891,7 @@ vector<Command>cmd = {
 							}
 						}
 				);
-				for (auto i : input) { if (i >= input.size()) throw std::runtime_error("too large node id"); }
+				//for (auto i : input) { if (i >= input.size()) throw std::runtime_error("too large node id"); }
 				save_vector<unsigned>(args[1], input);
 			}
 	},
