@@ -895,6 +895,24 @@ vector<Command>cmd = {
 				save_vector<unsigned>(args[1], input);
 			}
 	},
+    {
+            "text_to_binary_float_vector", 2,
+            "Loads a vector of floats in text format [first arg] and converts it to binary format [second arg = new filename]",
+            [](vector<string>args){
+                std::vector<float> input;
+                load_uncached_text_file(
+                        args[0],
+                        [&](std::istream&in){
+                            float x;
+                            while (in >> x) {
+                                input.push_back(x);
+                            }
+                        }
+                );
+                //for (auto i : input) { if (i >= input.size()) throw std::runtime_error("too large node id"); }
+                save_vector<float>(args[1], input);
+            }
+    },
 	{
 			"binary_to_text_vector", 2,
 			"Loads a vector of unsigned ints in binary format [first arg] and converts it to text format [second arg = new filename]",
